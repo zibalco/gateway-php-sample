@@ -2,13 +2,13 @@
 
 require 'functions.php';
 
-if($_POST['success']==1) {
-    echo "شناسه سفارش: ".$_POST['orderId']."<br>";
+if($_GET['success']==1) {
+    echo "شناسه سفارش: ".$_GET['orderId']."<br>";
 
     //start verfication
     $parameters = array(
         "merchant" => ZIBAL_MERCHANT_KEY,//required
-        "trackId" => $_POST['trackId'],//required
+        "trackId" => $_GET['trackId'],//required
 
     );
 

@@ -8,14 +8,14 @@ $parameters = array(
     "amount"=> 1000,//required
 
     "orderId"=> time(),//optional
-    "mobile"=> "09120000000",//optional
+    "mobile"=> "09120000000",//optional for mpg
 );
 
 $response = postToZibal('request', $parameters);
 var_dump($response);
 if ($response->result == 100)
 {
-    $startGateWayUrl = "https://gateway.zibal.ir/start/".$response->trackId;
+    $startGateWayUrl = "http://localhost:8000/start/".$response->trackId;
     header('location: '.$startGateWayUrl);
 }
 else{
