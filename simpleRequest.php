@@ -15,7 +15,7 @@ $response = postToZibal('request', $parameters);
 var_dump($response);
 if ($response->result == 100)
 {
-    $startGateWayUrl = "http://localhost:8000/start/".$response->trackId;
+    $startGateWayUrl = "https://gateway.zibal.ir/start/".$response->trackId;
     header('location: '.$startGateWayUrl);
 }
 else{
