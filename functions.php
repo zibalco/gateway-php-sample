@@ -29,38 +29,6 @@ function postToZibal($path, $parameters)
     return json_decode($response);
 }
 
-?>
-<?php
-
-/**
- * put your gatewat merchant key here.
- * use "zibal" for test
- */
-define("ZIBAL_MERCHANT_KEY","zibal");
-
-
-define("ZIBAL_CALLBACK_URL","http://yourapiurl.com/callback.php");
-
-/**
- * connects to zibal's rest api
- * @param $path
- * @param $parameters
- * @return stdClass
- */
-function postToZibal($path, $parameters)
-{
-    $url = 'https://gateway.zibal.ir/v1/'.$path;
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($parameters));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response  = curl_exec($ch);
-    curl_close($ch);
-    return json_decode($response);
-}
-
 /**
  * returns a string message based on result parameter from curl response
  * @param $code
@@ -102,6 +70,62 @@ function resultCodes($code)
 
         case 203:
             return "trackId نامعتبر می‌باشد";
+
+        default:
+            return "وضعیت مشخص شده معتبر نیست";
+    }
+}
+
+/**
+ * returns a string message based on status parameter from $_GET
+ * @param $code
+ * @return String
+ */
+function statusCodes($code)
+{
+    switch ($code) 
+    {
+        case -1:
+            return "در انتظار پردخت";
+        
+        case -2:
+            return "خطای داخلی";
+
+        case 1:
+            return "پرداخت شده - تاییدشده";
+
+        case 2:
+            return "پرداخت شده - تاییدنشده";
+
+        case 3:
+            return "لغوشده توسط کاربر";
+        
+        case 4:
+            return "‌شماره کارت نامعتبر می‌باشد";
+
+        case 5:
+            return "‌موجودی حساب کافی نمی‌باشد";
+
+        case 6:
+            return "رمز واردشده اشتباه می‌باشد";
+
+        case 7:
+            return "‌تعداد درخواست‌ها بیش از حد مجاز می‌باشد";
+        
+        case 8:
+            return "‌تعداد پرداخت اینترنتی روزانه بیش از حد مجاز می‌باشد";
+
+        case 9:
+            return "مبلغ پرداخت اینترنتی روزانه بیش از حد مجاز می‌باشد";
+
+        case 10:
+            return "‌صادرکننده‌ی کارت نامعتبر می‌باشد";
+        
+        case 11:
+            return "خطای سوییچ";
+
+        case 12:
+            return "کارت قابل دسترسی نمی‌باشد";
 
         default:
             return "وضعیت مشخص شده معتبر نیست";
