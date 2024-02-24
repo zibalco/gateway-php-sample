@@ -6,7 +6,6 @@
  */
 define("ZIBAL_MERCHANT_KEY","zibal");
 
-
 define("ZIBAL_CALLBACK_URL","http://yourapiurl.com/callback.php");
 
 /**
