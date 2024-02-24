@@ -14,7 +14,7 @@ $parameters = array(
     "description"=> "Hello World!",//optional
     "multiplexingInfos"=> array(//optional
         array("id"=> "self","amount"=> 150000),
-            array("bankAccount"=> "IR000000000000000000000000","amount"=> 50000),
+        array("bankAccount"=> "IR000000000000000000000000","amount"=> 50000),
     )
 );
 
@@ -25,8 +25,7 @@ if ($response->result == 100)
     //save trackId into database if you want or do something else
     $startGateWayUrl = "https://gateway.zibal.ir/start/".$response->trackId;
     header('location: '.$startGateWayUrl);
-}
-else{
+} else {
     echo "result: ".$response->result."<br>";
     echo "message: ".$response->message;
 }

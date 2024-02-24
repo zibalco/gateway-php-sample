@@ -17,8 +17,7 @@ if ($response->result == 100)
 {
     $startGateWayUrl = "https://gateway.zibal.ir/start/".$response->trackId;
     header('location: '.$startGateWayUrl);
-}
-else{
+} else {
     echo "errorCode: ".$response->result."<br>";
     echo "message: ".$response->message;
 }
